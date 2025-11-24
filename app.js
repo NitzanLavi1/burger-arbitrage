@@ -384,7 +384,7 @@ function renderScatterPlot(data) {
                 }
             },
             interaction: {
-                mode: 'nearest',
+                mode: 'point',
                 intersect: true
             }
         }
