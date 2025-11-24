@@ -153,8 +153,8 @@ async function loadData() {
     try {
         // Load both CSV files
         const [mapsResponse, woltResponse] = await Promise.all([
-            fetch('../Maps.csv'),
-            fetch('../wolt_data.csv')
+            fetch('./Maps.csv'),
+            fetch('./wolt_data.csv')
         ]);
 
         if (!mapsResponse.ok || !woltResponse.ok) {
