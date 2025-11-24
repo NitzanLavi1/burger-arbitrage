@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Discover the quality gap between dine-in and delivery experiences at Tel Aviv's best burger restaurants. Data-driven insights for smarter dining decisions.">
+  <meta name="description"
+    content="Discover the quality gap between dine-in and delivery experiences at Tel Aviv's best burger restaurants. Data-driven insights for smarter dining decisions.">
   <meta name="keywords" content="burger, delivery, dine-in, restaurant ratings, Tel Aviv, food quality">
   <meta name="author" content="Burger Arbitrage">
-  
+
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="🍔 The Burger Arbitrage - Dine-in vs Delivery Analysis">
   <meta property="og:description" content="Uncovering the Quality Gap Between Dine-in and Delivery">
-  
+
   <title>🍔 The Burger Arbitrage - Dine-in vs Delivery Analysis</title>
-  
+
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>">
-  
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>">
+
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
-  
+
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- Chart.js Datalabels Plugin for restaurant labels -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 </head>
+
 <body>
-  
+
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
@@ -36,7 +43,7 @@
 
   <!-- Main Content -->
   <main class="container">
-    
+
     <!-- Loading State -->
     <div id="loading" class="loading-container">
       <div class="spinner"></div>
@@ -45,7 +52,7 @@
 
     <!-- Main Content (hidden until data loads) -->
     <div id="main-content" style="display: none;">
-      
+
       <!-- Key Metrics Section -->
       <section class="section">
         <div class="metrics-grid" id="metrics-grid">
@@ -57,7 +64,7 @@
       <section class="section">
         <h2 class="section-title">The Quality Landscape</h2>
         <p class="section-subtitle">How do restaurants perform in-person vs. delivery?</p>
-        
+
         <div class="chart-container">
           <div class="chart-wrapper">
             <canvas id="scatter-chart"></canvas>
@@ -71,7 +78,7 @@
       <!-- Top Lists Section -->
       <section class="section">
         <div class="two-column-grid">
-          
+
           <!-- Avoid for Delivery -->
           <div class="glass-card fade-in stagger-1">
             <h3 style="color: var(--color-category-dine-in); margin-bottom: var(--space-md);">
@@ -97,7 +104,7 @@
               <!-- Items will be inserted by JavaScript -->
             </ul>
           </div>
-          
+
         </div>
       </section>
 
@@ -105,7 +112,7 @@
       <section class="section">
         <h2 class="section-title">Category Distribution</h2>
         <p class="section-subtitle">How restaurants are classified</p>
-        
+
         <div class="chart-container">
           <div class="chart-wrapper" style="height: 350px;">
             <canvas id="category-chart"></canvas>
@@ -116,21 +123,16 @@
       <!-- Data Explorer Section -->
       <section class="section data-explorer">
         <h2 class="section-title">Explore Full Dataset</h2>
-        
+
         <div class="glass-card">
           <div class="explorer-header">
             <div class="search-box">
               <span class="search-icon">🔍</span>
-              <input 
-                type="text" 
-                id="search-input" 
-                class="search-input" 
-                placeholder="Search restaurants..."
-                aria-label="Search restaurants"
-              >
+              <input type="text" id="search-input" class="search-input" placeholder="Search restaurants..."
+                aria-label="Search restaurants">
             </div>
           </div>
-          
+
           <div class="table-container" id="table-container">
             <table class="data-table" id="data-table">
               <thead>
@@ -165,6 +167,7 @@
 
   <!-- JavaScript -->
   <script src="app.js"></script>
-  
+
 </body>
+
 </html>

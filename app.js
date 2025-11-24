@@ -305,6 +305,12 @@ function renderScatterPlot(data) {
         }
     }));
 
+    // Find top 8 restaurants by review count for labeling
+    const topRestaurants = [...data]
+        .sort((a, b) => b.googleReviews - a.googleReviews)
+        .slice(0, 8)
+        .map(d => d.restaurant);
+
     new Chart(ctx, {
         type: 'scatter',
         data: { datasets },
@@ -342,6 +348,32 @@ function renderScatterPlot(data) {
                                 `Reviews: ${formatNumber(d.reviews)}`
                             ];
                         }
+                    }
+                },
+                // Add labels for top restaurants
+                datalabels: {
+                    display: (context) => {
+                        // Only show labels for top 8 most-reviewed restaurants
+                        return topRestaurants.includes(context.dataset.data[context.dataIndex].label);
+                    },
+                    align: 'right',
+                    offset: 8,
+                    color: '#E8E8E8',
+                    font: {
+                        size: 11,
+                        family: 'Inter',
+                        weight: '600'
+                    },
+                    backgroundColor: 'rgba(10, 14, 39, 0.8)',
+                    borderRadius: 4,
+                    padding: {
+                        top: 4,
+                        bottom: 4,
+                        left: 6,
+                        right: 6
+                    },
+                    formatter: (value, context) => {
+                        return value.label;
                     }
                 }
             },
