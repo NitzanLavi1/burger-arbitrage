@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover the quality gap between dine-in and delivery experiences at Tel Aviv's best burger restaurants. Data-driven insights for smarter dining decisions.">
+  <meta name="keywords" content="burger, delivery, dine-in, restaurant ratings, Tel Aviv, food quality">
+  <meta name="author" content="Burger Arbitrage">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="🍔 The Burger Arbitrage - Dine-in vs Delivery Analysis">
+  <meta property="og:description" content="Uncovering the Quality Gap Between Dine-in and Delivery">
+  
+  <title>🍔 The Burger Arbitrage - Dine-in vs Delivery Analysis</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-emoji">🍔</span>
+      <h1 class="hero-title">The Burger Arbitrage</h1>
+      <p class="hero-subtitle">Uncovering the Quality Gap Between Dine-in and Delivery</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container">
+    
+    <!-- Loading State -->
+    <div id="loading" class="loading-container">
+      <div class="spinner"></div>
+      <p class="loading-text">Loading delicious data...</p>
+    </div>
+
+    <!-- Main Content (hidden until data loads) -->
+    <div id="main-content" style="display: none;">
+      
+      <!-- Key Metrics Section -->
+      <section class="section">
+        <div class="metrics-grid" id="metrics-grid">
+          <!-- Metrics will be inserted here by JavaScript -->
+        </div>
+      </section>
+
+      <!-- Scatter Plot Section -->
+      <section class="section">
+        <h2 class="section-title">The Quality Landscape</h2>
+        <p class="section-subtitle">How do restaurants perform in-person vs. delivery?</p>
+        
+        <div class="chart-container">
+          <div class="chart-wrapper">
+            <canvas id="scatter-chart"></canvas>
+          </div>
+          <p class="chart-caption" id="scatter-caption">
+            <!-- Caption will be inserted by JavaScript -->
+          </p>
+        </div>
+      </section>
+
+      <!-- Top Lists Section -->
+      <section class="section">
+        <div class="two-column-grid">
+          
+          <!-- Avoid for Delivery -->
+          <div class="glass-card fade-in stagger-1">
+            <h3 style="color: var(--color-category-dine-in); margin-bottom: var(--space-md);">
+              🚨 Avoid for Delivery
+            </h3>
+            <p class="text-muted mb-lg" style="font-size: var(--font-size-sm);">
+              Restaurants where quality drops significantly
+            </p>
+            <ul class="restaurant-list" id="worst-list">
+              <!-- Items will be inserted by JavaScript -->
+            </ul>
+          </div>
+
+          <!-- Hidden Gems -->
+          <div class="glass-card fade-in stagger-2">
+            <h3 style="color: var(--color-category-delivery); margin-bottom: var(--space-md);">
+              💎 Hidden Gems
+            </h3>
+            <p class="text-muted mb-lg" style="font-size: var(--font-size-sm);">
+              High-rated spots with fewer reviews
+            </p>
+            <ul class="restaurant-list" id="gems-list">
+              <!-- Items will be inserted by JavaScript -->
+            </ul>
+          </div>
+          
+        </div>
+      </section>
+
+      <!-- Category Distribution Section -->
+      <section class="section">
+        <h2 class="section-title">Category Distribution</h2>
+        <p class="section-subtitle">How restaurants are classified</p>
+        
+        <div class="chart-container">
+          <div class="chart-wrapper" style="height: 350px;">
+            <canvas id="category-chart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Explorer Section -->
+      <section class="section data-explorer">
+        <h2 class="section-title">Explore Full Dataset</h2>
+        
+        <div class="glass-card">
+          <div class="explorer-header">
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input 
+                type="text" 
+                id="search-input" 
+                class="search-input" 
+                placeholder="Search restaurants..."
+                aria-label="Search restaurants"
+              >
+            </div>
+          </div>
+          
+          <div class="table-container" id="table-container">
+            <table class="data-table" id="data-table">
+              <thead>
+                <tr>
+                  <th>Restaurant</th>
+                  <th>Dine-in ⭐</th>
+                  <th>Dine-in Reviews</th>
+                  <th>Delivery ⭐</th>
+                  <th>Delivery Reviews</th>
+                  <th>Quality Gap</th>
+                  <th>Category</th>
+                </tr>
+              </thead>
+              <tbody id="table-body">
+                <!-- Rows will be inserted by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Error State -->
+    <div id="error-state" class="empty-state" style="display: none;">
+      <div class="empty-state-icon">⚠️</div>
+      <h2>Unable to Load Data</h2>
+      <p>Please make sure the data files (Maps.csv and wolt_data.csv) are in the correct location.</p>
+    </div>
+
+  </main>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+  
+</body>
+</html>
