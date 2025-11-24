@@ -191,7 +191,36 @@ async function loadData() {
             }
         }
 
-        return merged;
+        // Deduplicate: Keep only the best-rated instance of each restaurant
+        // This handles chains like McDonald's with multiple locations
+        const deduped = [];
+        const seen = new Map();
+
+        for (const restaurant of merged) {
+            // Normalize name for comparison (remove location details, trim, lowercase)
+            const normalizedName = restaurant.restaurant
+                .toLowerCase()
+                .replace(/\s*[-–—]\s*.*/g, '') // Remove everything after dash (location info)
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            if (!seen.has(normalizedName)) {
+                seen.set(normalizedName, restaurant);
+            } else {
+                // Keep the one with higher Google rating (or more reviews if ratings are equal)
+                const existing = seen.get(normalizedName);
+                if (restaurant.googleRating > existing.googleRating ||
+                    (restaurant.googleRating === existing.googleRating &&
+                        restaurant.googleReviews > existing.googleReviews)) {
+                    seen.set(normalizedName, restaurant);
+                }
+            }
+        }
+
+        // Convert Map back to array
+        const uniqueRestaurants = Array.from(seen.values());
+
+        return uniqueRestaurants;
     } catch (error) {
         console.error('Error loading data:', error);
         throw error;
